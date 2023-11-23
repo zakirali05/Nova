@@ -2,9 +2,12 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import {ArrowRight,Check,X } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 
- const PricingPage = ()=>{
+ const PricingPage =async ()=>{
+    const {getUser} = getKindeServerSession();
+    const user = await getUser()
     return (
         <section>
             <div className="flex items-center justify-center my-10">
@@ -43,11 +46,14 @@ import { Badge } from "@/components/ui/badge"
                                 <X className="h-4 w-4 mr-2"/>Priority support</p>
                             </div>
                             <Button variant={"secondary"}  size={"sm"} asChild className="w-full rounded-0">
-                                
-                            <Link href="/sign-up">
+                              {user ? <Link href="/sign-up">
+                            Buy Now
+                            <ArrowRight className="h-4 w-4 ml-2"/>
+                            </Link> : <Link href="/sign-up">
                             Sign up
                             <ArrowRight className="h-4 w-4 ml-2"/>
-                            </Link>
+                            </Link>}  
+                           
                         </Button>
                         </div>
                         
@@ -82,11 +88,14 @@ import { Badge } from "@/components/ui/badge"
                                 <Check className="h-4 w-4 mr-2"/>Priority support</p>
                             </div>
                             <Button   size={"sm"} asChild className="w-full rounded-[0px]">
-                                
-                            <Link href="/sign-up">
+                                {user ? <Link href="/sign-up">
+                            Buy Now
+                            <ArrowRight className="h-4 w-4 ml-2"/>
+                            </Link> : <Link href="/sign-up">
                             Sign up
                             <ArrowRight className="h-4 w-4 ml-2"/>
-                            </Link>
+                            </Link>}
+                           
                         </Button>
                         </div>
                         {/* Second grid ends */}
