@@ -21,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("grainy",inter.className)}>
         <Navbar/>
+      
         <MaxWidthRapper classname='p-2'>
         {children}
         </MaxWidthRapper>

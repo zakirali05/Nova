@@ -3,8 +3,15 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {ArrowRight} from "lucide-react"
 import Image from "next/image";
+import {RegisterLink} from "@kinde-oss/kinde-auth-nextjs/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-export default function Home() {
+
+
+export default async function Home() {
+const {getUser} = getKindeServerSession()
+const user = await getUser()
+
   return (
    <section className="mt-10 mb-10">
             <div className='absolute top-[28rem] w-[200px] h-[200px] z-[-1]  blur-[4rem] bg-primary/40'/>
@@ -14,12 +21,23 @@ export default function Home() {
       <Badge variant="secondary" className="bg-white  shadow-lg">Nova is now public !</Badge>
       <h2 className=" text-4xl md:text-5xl font-bold md:w-[70%] text-center leading-[2.8rem]  md:leading-[3.5rem]">Chat with your <span className="text-primary">documents</span> in seconds.</h2>
       <p className="text-muted-foreground md:w-[50%] text-center">Nova allows you to have conversation with any pdf.Just upload the document and start asking questions right away. </p>
-      <Button size="default" asChild>
-                            <Link href="/sign-up">
-                            Get Started
-                            <ArrowRight className="h-4 w-4 ml-2"/>
-                            </Link>
-                        </Button>
+      {user ? (
+              
+                
+              <Button size={"sm"} asChild>
+                <Link href="/dashboard">
+                Get Started
+                <ArrowRight className="h-4 w-4 ml-2" />
+                </Link>
+              </Button>
+          ) : (
+            <Button size={"sm"} asChild>
+              <RegisterLink>
+                Get Started
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </RegisterLink>
+            </Button>
+          )}
     </div>
   <div className="p-2 rounded-md  bg-gray-300/30 ">
     <Image
