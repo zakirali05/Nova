@@ -4,6 +4,7 @@ import './globals.css'
 import { MaxWidthRapper } from '@/components/MaxWidthRapper'
 import { Navbar } from '@/components/Navbar'
 import { cn } from '@/lib/utils'
+import Providers from '@/components/Providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Providers>
       <body className={cn("grainy",inter.className)}>
         <Navbar/>
       
@@ -26,6 +28,7 @@ export default function RootLayout({
         {children}
         </MaxWidthRapper>
       </body>
+      </Providers>
     </html>
   )
 }

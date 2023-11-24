@@ -15,7 +15,7 @@ const userInDb = await db.user.findUnique({
     }
 })
 
-if (!userInDb) return redirect("/auth-callback")
+if (!userInDb) return redirect("/auth-callback?origin=dashboard")
 
     return (
         <div>Dashboard</div>

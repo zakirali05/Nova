@@ -58,13 +58,13 @@ const PricingPage = async () => {
               </div>
               <Button
                 variant={"secondary"}
-                size={"sm"}
+                size={"lg"}
                 asChild
                 className="w-full rounded-0"
               >
                 {user ? (
-                  <Link href="/sign-up">
-                    Buy Now
+                  <Link href="/dashboard">
+                   Dashboard
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Link>
                 ) : (
@@ -77,7 +77,7 @@ const PricingPage = async () => {
             </div>
 
             {/* Second grid */}
-            <div className="shadow-lg h-full bg-white border border-primary rounded-md relative">
+            <div className="shadow-lg h-full bg-white border-2 border-primary/50 rounded-md relative">
               <Badge className="absolute top-[-15px] right-[32%]">
                 Upgrade Now
               </Badge>
@@ -118,9 +118,9 @@ const PricingPage = async () => {
                   Priority support
                 </p>
               </div>
-              <Button size={"sm"} asChild className="w-full rounded-[0px]">
+              <Button   size={"lg"} asChild className="w-full rounded-[0px] ">
                 {user ? (
-                  <Link href="/sign-up">
+                  <Link href="/sign-up" >
                     Buy Now
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Link>
