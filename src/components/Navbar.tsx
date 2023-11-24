@@ -40,7 +40,7 @@ export const Navbar = async () => {
             {user ? (
               
                 <>
-                  <Link href="/dashboard" className="text-muted-foreground hover:text-black">
+                  <Link href="/dashboard" className=" text-sm text-muted-foreground hover:text-black">
                   dashboard
                   </Link>
                   <UserAccountNav email={user.email!} imageUrl={user.picture!} name={user.given_name!}   />
