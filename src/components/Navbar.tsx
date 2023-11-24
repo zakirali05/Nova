@@ -41,7 +41,7 @@ export const Navbar = async () => {
               
                 <>
                   <Link href="/dashboard" className=" text-sm text-muted-foreground hover:text-black">
-                  dashboard
+                  Dashboard
                   </Link>
                   <UserAccountNav email={user.email!} imageUrl={user.picture!} name={user.given_name!}   />
                   </>

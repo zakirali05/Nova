@@ -1,45 +1,50 @@
-"use client"
+import { db } from "@/lib/db";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { Loader2 } from "lucide-react";
+import { redirect } from "next/navigation";
 
-import { useRouter, useSearchParams } from 'next/navigation'
-import { trpc } from '../_trpc/client'
-import { Loader2 } from 'lucide-react'
+const Page = async () => {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
-const Page = () => {
-  const router = useRouter()
+  if (!user) {
+    return  redirect("/");
+  }
 
-  const searchParams = useSearchParams()
-  const origin = searchParams.get('origin')
+    const UserInDb = await db.user.findFirst({
+      where: {
+        UserId: user.id,
+      },
+    });
 
-  trpc.authCallback.useQuery(undefined, {
-    onSuccess: ({ success }) => {
-      if (success) {
-        // user is synced to db
-        router.push(origin ? `/${origin}` : '/dashboard')
-      }
-    },
-    onError: (err) => {
-      if (err.data?.code === 'UNAUTHORIZED') {
-        router.push('/sign-in')
-      }
-
-    },
-    retry: true,
-    retryDelay: 500,
+    if (UserInDb){
     
-    
-  })
+      return  redirect("/dashboard")
+    }
+
+
+    const newUser = await db.user.create({
+      data:{
+        UserId : user.id,
+        email:user.email!,
+      }
+    })
+
+    if(newUser){
+     
+      return  redirect("/dashboard")
+    }
+  
 
   return (
-    <div className='w-full mt-24 flex justify-center'>
-      <div className='flex flex-col items-center gap-2'>
-        <Loader2 className='h-8 w-8 animate-spin text-zinc-800' />
-        <h3 className='font-semibold text-xl'>
-          Setting up your account...
-        </h3>
+    <div className="w-full mt-24 flex justify-center">
+      <div className="flex flex-col items-center gap-2">
+        <Loader2 className="h-8 w-8 animate-spin text-zinc-800" />
+        <h3 className="font-semibold text-xl">Setting up your account...</h3>
         <p>You will be redirected automatically.</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
