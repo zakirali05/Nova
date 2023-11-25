@@ -36,11 +36,13 @@ const MyFiles = () => {
     {
         files.length === 0 ?<section className="w-full h-full flex items-center justify-center">
             <h2 className="text-muted-foreground">No documents uploaded !</h2>
-        </section> : <section className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+        </section> :<>  <p className="text-sm text-muted-foreground mb-5">({files.length})Documents</p> <section className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+        
             {files.map((file)=>(
                 <FileComp file={file}/>
             ))}
         </section>
+        </>
     }
   </main>
   }</main>;
