@@ -5,6 +5,7 @@ import { MaxWidthRapper } from '@/components/MaxWidthRapper'
 import { Navbar } from '@/components/Navbar'
 import { cn } from '@/lib/utils'
 import Providers from '@/components/Providers'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,7 +27,9 @@ export default function RootLayout({
       
         <MaxWidthRapper classname='p-2'>
         {children}
+        
         </MaxWidthRapper>
+        <Toaster/>
       </body>
       </Providers>
     </html>
