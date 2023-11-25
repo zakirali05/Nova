@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 
 const FileComp = ({file}:any) => {
   return (
-    <div className="bg-white w-[90%] sm:w-full mx-auto  shadow-lg p-3 rounded-md flex flex-col  h-[120px] justify-between">
+    <div className="bg-white w-[90%] sm:w-full mx-auto  shadow-md p-3 rounded-md flex flex-col  h-[120px] justify-between">
         <div className="border-b h-[80px]  border-muted-foreground/30 pb-5 flex items-center gap-5">
             <div className="bg-gradient-to-r from-primary/50 to-primary   rounded-full h-8 w-8"></div>
             <h2 className="font-medium text-sm">{file.name}</h2>
