@@ -15,7 +15,20 @@ const UploadButtonComp = () => {
   const [progress, setProgress] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
- 
+  const startSimulatedProgress = () => {
+
+    const interval = setInterval(() => {
+      setProgress((prevProgress) => {
+        if (prevProgress >= 95) {
+          clearInterval(interval)
+          return prevProgress
+        }
+        return prevProgress + 5
+      })
+    }, 500)
+
+    return interval
+  }
 
   return (
     <Dialog>
@@ -25,7 +38,7 @@ const UploadButtonComp = () => {
       <DialogContent>
         <section className="flex flex-col gap-10 items-center justify-center p-10 m-4 bg-slate-200/60">
           {loading ? (
-            <div className="w-full mt-24 flex justify-center">
+            <div className="w-full  flex justify-center">
               <div className="flex flex-col items-center gap-2">
                 <Loader2 className="h-8 w-8 animate-spin text-zinc-800" />
                 <h3 className="font-semibold text-xl">
@@ -36,6 +49,8 @@ const UploadButtonComp = () => {
             </div>
           ) : (
             <UploadDropzone
+
+            
               appearance={{
                 uploadIcon: {
                   height: "70px",
@@ -61,10 +76,16 @@ const UploadButtonComp = () => {
                 // Do something with the error.
                 // alert(`ERROR! ${error.message}`);
               }}
-              onUploadBegin={() => {
+              onUploadBegin={async() => {
                 setLoading(true);
-                setProgress(90)
-              }}
+                // const progressInterval = startSimulatedProgress()            
+                }}
+
+                onUploadProgress={
+                  async() => {
+                    setLoading(true);
+                    const progressInterval = startSimulatedProgress()}
+                }
             
             />
           )}
