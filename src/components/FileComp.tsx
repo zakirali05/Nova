@@ -49,7 +49,7 @@ setLoading(false)
           {format(new Date(file.createdAt), "MMM yyyy")}
         </p>
         <Link
-          href={`/dashboard/${file.key}`}
+          href={`/dashboard/${file.id}`}
           className="text-sm text-muted-foreground flex gap-2 items-center"
         >
           <MessageSquare className="h-4 w-4" />
