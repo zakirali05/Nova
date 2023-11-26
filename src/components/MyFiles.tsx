@@ -39,7 +39,7 @@ const MyFiles = () => {
         </section> :<>  <p className="text-sm text-muted-foreground mb-5">({files.length})Documents</p> <section className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
         
             {files.map((file)=>(
-                <FileComp file={file}/>
+                <FileComp key={file}  file={file}/>
             ))}
         </section>
         </>
