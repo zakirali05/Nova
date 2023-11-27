@@ -121,7 +121,7 @@ const PricingPage = async () => {
               <Button   size={"lg"} asChild className="w-full rounded-[0px] ">
                 {user ? (
                   <Link href="/sign-up" >
-                    Buy Now
+                    Upgrade
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Link>
                 ) : (

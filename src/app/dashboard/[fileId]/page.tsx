@@ -13,8 +13,8 @@ const Chatpage = async ({ params }: { params: { fileId: string } }) => {
     return redirect("/dashboard")
   }
   return (
-    <section className="h-screen">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-screen">
+    <section>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
         <PdfRenderer url={file.url} />
         <ChatRendered/>
       </div>

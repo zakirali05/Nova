@@ -11,9 +11,11 @@ datasource db {
 }
 
 model User {
-  id                     String    @id @default(auto()) @map("_id") @db.ObjectId
-  UserId                 String    @unique //matches kinde user id
-  email                  String    @unique
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  UserId      String @unique //matches kinde user id
+  email       String @unique
+  MaxpdfCount Int    @default(5) @map(name: "max_pdf_count")
+
   stripeCustomerId       String?   @map(name: "stripe_customer_id")
   stripeSubscriptionId   String?   @map(name: "stripe_subscription_id")
   stripePriceId          String?   @map(name: "stripe_price_id")
